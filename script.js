@@ -1,4 +1,4 @@
-document.querySelector("p").textContent;
+// FIRST STEP: GET COMPUTER CHOICE
 let compChoice = "";
 function getComputerChoice() {
     let num = Math.ceil(Number(Math.random()*3));
@@ -7,33 +7,30 @@ function getComputerChoice() {
     } else if (num === 2) {
         compChoice = "Paper";
     }else{
-        compChoice = "scissors";
+        compChoice = "Scissors";
     }
-        console.log(compChoice);
 }
-getComputerChoice();
 
+// SECOND STEP: GET HUMAN CHOICE
 let humChoice = "";
 function getHumanChoice() {
-    // console.log(prompt("Enter a valid input: "));
+    humChoice = prompt("Rock, Paper or Scissors: ");
 }
-getHumanChoice();
 
+// THIRD STEP: ADD GAME LOGIC
 let humScore = 0;
 let compScore = 0;
 
 function playRound(humanChoice, computerChoice){
-    humanChoice = humChoice;
-    computerChoice = compChoice;
     if (humanChoice === "Rock" && computerChoice === "Rock") {
-        consolole.log(`You draw`);
+        console.log(`You draw`);
     } else if (humanChoice === "Rock" && computerChoice === "Paper") {
         console.log(`You lose, ${computerChoice} beats ${humanChoice}`);
         compScore++;
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
         console.log(`You win, ${humanChoice} beats ${computerChoice}`);
         humScore++;
-    } else if (humanChoice === "paper" && computerChoice === "Rock") {
+    } else if (humanChoice === "Paper" && computerChoice === "Rock") {
         console.log(`You win, ${humanChoice} beats ${computerChoice}`);
         humScore++;
     } else if (humanChoice === "Paper" && computerChoice === "Paper") {
@@ -49,9 +46,20 @@ function playRound(humanChoice, computerChoice){
         humScore++;
     } else if (humanChoice === "Scissors" && computerChoice === "Scissors") {
         console.log("You draw");
+    }else {
+        alert("Enter a valid input");
     }
 }
 
-function playGame () {
+//  FOURTH STEP: PLAY/ITERATE MULTIPLE TIMES
+function playGame(){
+    getComputerChoice();
+    getHumanChoice();
+    playRound(humChoice, compChoice);
+    console.log("Your score: " + humScore);
+    console.log("Computer score: " + compScore);
+}
 
+for(let i = 0; i < 5; i++){
+    playGame();
 }
