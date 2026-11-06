@@ -56,10 +56,11 @@ function playGame(){
     getComputerChoice();
     getHumanChoice();
     playRound(humChoice, compChoice);
-    console.log("Your score: " + humScore);
-    console.log("Computer score: " + compScore);
+   
 }
 
 for(let i = 0; i < 5; i++){
     playGame();
 }
+console.log("Your score: " + humScore);
+console.log("Computer score: " + compScore);
