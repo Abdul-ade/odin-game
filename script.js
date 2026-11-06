@@ -21,46 +21,95 @@ function getHumanChoice() {
 let humScore = 0;
 let compScore = 0;
 
+function comment(comment){
+    document.getElementById("comment").textContent = comment;
+}
+
 function playRound(humanChoice, computerChoice){
     if (humanChoice === "Rock" && computerChoice === "Rock") {
-        console.log(`You draw`);
+        comment("draw");
     } else if (humanChoice === "Rock" && computerChoice === "Paper") {
-        console.log(`You lose, ${computerChoice} beats ${humanChoice}`);
+        comment(`${computerChoice} beats ${humanChoice}`);
         compScore++;
     } else if (humanChoice === "Rock" && computerChoice === "Scissors") {
-        console.log(`You win, ${humanChoice} beats ${computerChoice}`);
+        comment(`${humanChoice} beats ${computerChoice}`);
         humScore++;
     } else if (humanChoice === "Paper" && computerChoice === "Rock") {
-        console.log(`You win, ${humanChoice} beats ${computerChoice}`);
+        comment(`${humanChoice} beats ${computerChoice}`);
         humScore++;
     } else if (humanChoice === "Paper" && computerChoice === "Paper") {
-        console.log(`You draw`);
+        comment(`draw`);
     } else if (humanChoice === "Paper" && computerChoice === "Scissors") {
-        console.log(`You lose, ${computerChoice} beats ${humanChoice}`);
+        comment(`${computerChoice} beats ${humanChoice}`);
         compScore++;
     } else if (humanChoice === "Scissors" && computerChoice === "Rock") {
-        console.log(`You lose, ${computerChoice} beats ${humanChoice}`);
+        comment(`${computerChoice} beats ${humanChoice}`);
         compScore++;
     } else if (humanChoice === "Scissors" && computerChoice === "Paper") {
-        console.log(`You win, ${humanChoice} beats ${computerChoice}`);
+        comment(`${humanChoice} beats ${computerChoice}`);
         humScore++;
     } else if (humanChoice === "Scissors" && computerChoice === "Scissors") {
-        console.log("You draw");
+        comment("draw");
     }else {
         alert("Enter a valid input");
     }
 }
 
 //  FOURTH STEP: PLAY/ITERATE MULTIPLE TIMES
-function playGame(){
-    getComputerChoice();
-    getHumanChoice();
-    playRound(humChoice, compChoice);
+// function playGame(){
+//     getComputerChoice();
+//     getHumanChoice();
+//     playRound(humChoice, compChoice);
    
-}
+// }
 
-for(let i = 0; i < 5; i++){
-    playGame();
+// for(let i = 0; i < 5; i++){
+//     playGame();
+// }
+// console.log("Your score: " + humScore);
+// console.log("Computer score: " + compScore);
+
+;
+let displayComputerScore = document.getElementById("computer-score");
+
+function displayScore(Human, Computer){
+    document.getElementById("human-score").textContent = Human;
+    document.getElementById("computer-score").textContent = Computer;
 }
-console.log("Your score: " + humScore);
-console.log("Computer score: " + compScore);
+function resetGame() {
+    humScore = 0;
+    compScore = 0;
+    displayScore(humScore, compScore);
+}
+function displayWinner() {
+    if (humScore === 5) {
+        alert("Congratulations! You won the game!");
+    } else if (compScore === 5) {
+        alert("Sorry! The computer won the game!");
+    }
+}
+document.getElementById("rock").addEventListener("click", function() {
+    humChoice = "Rock";
+    getComputerChoice();
+    playRound(humChoice, compChoice);
+    displayScore(humScore, compScore);
+    displayWinner();
+});
+document.getElementById("paper").addEventListener("click", function() {
+    humChoice = "Paper";
+    getComputerChoice();
+    playRound(humChoice, compChoice);
+    displayScore(humScore, compScore);
+    displayWinner();
+});
+document.getElementById("scissors").addEventListener("click", function() {
+    humChoice = "Scissors";
+    getComputerChoice();
+    playRound(humChoice, compChoice);
+    displayScore(humScore, compScore);
+    displayWinner();
+});
+
+document.getElementById("reset").addEventListener("click", () => {
+    resetGame();
+});
